@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+.calculator {
+    background-color: grey;
+    width: 500px;
+    height: 700px;
+}
+
+.screen {
+    background-color: antiquewhite;
+    width: 100%;
+    height: 20%;
+}
+
+.deletebuttons {
+    background-color: aqua;
+    width: 100%;
+    height: 15%;
+    display: flex;
+}
+
+.clear,
+.delete {
+    flex: 1;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+}
+
+.buttons {
+    width: 100%;
+    height: 100%;
+}
+
+.firstrow,
+.secondrow,
+.thirdrow,
+.fourthrow {
+    display: flex;
+    height: 20%;
+}
+
+.firstrow div,
+.secondrow div,
+.thirdrow div,
+.fourthrow div {
+    flex: 1;
+}
+
+
+
