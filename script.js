@@ -36,12 +36,13 @@ const result = document.querySelector('.result')
 
 operand.addEventListener('click',operandAction);
 function operandAction() {
-    if(operand.innerHTML == '÷') {
-    }
+
 }
 
 equal.addEventListener('click',equals);
 function equals() {
+    display = display.split(' ');
+    console.log(display);
 }
 
 clear.addEventListener('click',clearScreen)
@@ -59,5 +60,8 @@ numberButtons.forEach(button => {
         operation.textContent = display;
     })
 })
+
+
+
 
 
