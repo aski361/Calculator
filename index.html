@@ -14,35 +14,38 @@
 
     <main>
         <div class="calculator">
-            <div class="screen"></div>
+            <div class="screen">
+                <div class="operation"></div>
+                <div class="result"></div>
+            </div>
             <div class="deletebuttons">
-                <div class="clear"><button>CLEAR</button></div>
-                <div class="delete"><button>DELETE</button></div>
+                <div class="clear"><button id="clear">CLEAR</button></div>
+                <div class="delete"><button id="delete">DELETE</button></div>
             </div>
             <div class="buttons">
                 <div class="firstrow">
-                    <div><button>7</button></div>
-                    <div><button>8</button></div>
-                    <div><button>9 </button></div>
-                    <div><button>÷</button></div>
+                    <div><button class="number btn">7</button></div>
+                    <div><button class="number btn">8</button></div>
+                    <div><button class="number btn">9 </button></div>
+                    <div><button class="operand">÷</button></div>
                 </div>
                 <div class="secondrow">
-                    <div><button>4</button></div>
-                    <div><button>5</button></div>
-                    <div><button>6</button></div>
-                    <div><button>*</button></div>
+                    <div><button class="number btn">4</button></div>
+                    <div><button class="number btn">5</button></div>
+                    <div><button class="number btn">6</button></div>
+                    <div><button class="operand btn">*</button></div>
                 </div>
                 <div class="thirdrow">
-                    <div><button>1</button></div>
-                    <div><button>2</button></div>
-                    <div><button>3 </button></div>
-                    <div><button>-</button></div>
+                    <div><button class="number btn">1</button></div>
+                    <div><button class="number btn">2</button></div>
+                    <div><button class="number btn">3 </button></div>
+                    <div><button class="operand btn">-</button></div>
                 </div>
                 <div class="fourthrow">
-                    <div><button>.</button></div>
-                    <div><button>0</button></div>
-                    <div><button>=</button></div>
-                    <div><button>+</button></div>
+                    <div><button class="operand btn">.</button></div>
+                    <div><button class="number btn">0</button></div>
+                    <div><button id="equal">=</button></div>
+                    <div><button class="operand btn">+</button></div>
                 </div>
             </div>
         </div>
