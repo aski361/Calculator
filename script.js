@@ -14,52 +14,52 @@ const divide = function(a, b) {
     return a / b;
 }
     
-let firstNumber;
-let operator;
-let secondNumber;
-let display = '';
+let firstNumber = '';
+let operator = '';
+let secondNumber = '';
+let upperDisplay = '';
+let downDisplay = '';
+let result = '';
+
     
 const operate = function(operator, firstNumber, secondNumber) {
-    return operator === '+' ? add(firstNumber, secondNumber) :
+    return operator == ' + ' ? add(Number(firstNumber), Number(secondNumber)):
     operator == '-' ? substract(firstNumber, secondNumber) :
     operator == '*' ? multiply(firstNumber, secondNumber) :
     operator == '/' ? divide(firstNumber, secondNumber) : 'Podano zły operator'
 }
 
-const numberButtons = document.querySelectorAll('.btn');
-const screen = document.querySelector('.screen');
-const clear = document.querySelector('#clear');
-const equal = document.querySelector('#equal');
-const operand = document.querySelector('.operand');
+const numberButtons = document.querySelectorAll('.number');
 const operation = document.querySelector('.operation');
-const result = document.querySelector('.result')
+const operand = document.querySelectorAll('.operand');
+const resultDiv = document.querySelector('.result')
+const clear = document.querySelector('#clear');
 
-operand.addEventListener('click',operandAction);
-function operandAction() {
-
-}
-
-equal.addEventListener('click',equals);
-function equals() {
-    display = display.split(' ');
-    console.log(display);
-}
-
-clear.addEventListener('click',clearScreen)
-
-function clearScreen() {
-    if(clear.innerHTML == 'CLEAR') {
-        operation.textContent = '0'
-        display = ''
-    }
-}
+clear.addEventListener('click', () => {
+    resultDiv.textContent = '0';
+    operation.textContent = '';
+    firstNumber = '';
+    operator = '';
+    secondNumber = '';
+    upperDisplay = '';
+    downDisplay = '';
+    result = '';
+})
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        display += button.innerHTML
-        operation.textContent = display;
+        
     })
 })
+
+operand.forEach(button => {
+    button.addEventListener('click', () => {
+        
+    })
+})
+
+
+
 
 
 
