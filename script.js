@@ -13,63 +13,81 @@ const multiply = function(a, b) {
 const divide = function(a, b) {
     return a / b;
 }
+
+const operate = function(operator, firstNumber, secondNumber) {
+    return operator == ' + ' ? add(Number(firstNumber), Number(secondNumber)):
+    operator == ' - ' ? substract(Number(firstNumber), Number(secondNumber)) :
+    operator == ' * ' ? multiply(Number(firstNumber), Number(secondNumber)) :
+    operator == ' / ' ? divide(Number(firstNumber), Number(secondNumber)) : 'Podano zły operator'
+}
+
+function appendNumber(number) {
+    if (currentOperation.innerHTML === '0' || shouldScreenReset) resetScreen();
+    currentOperation.textContent += number;
+}
+
+function resetScreen() {
+    currentOperation.textContent = '';
+    shouldScreenReset = false;
+}
+
+function roundAnswer(wynik) {
+    return Math.round(wynik*1000)/1000;
+}
+
+function clearFunction() {
+    firstNumber = '';
+    secondNumber = '';
+    currentOperator = null;
+    shouldScreenReset = false;
+    currentOperation.textContent = '0';
+    operation.textContent = '';
+}
+
+
     
 let firstNumber = '';
 let secondNumber = '';
 let currentOperator = null;
 let shouldScreenReset = false;
 
-
-    
-const operate = function(operator, firstNumber, secondNumber) {
-    return operator == ' + ' ? add(Number(firstNumber), Number(secondNumber)):
-    operator == ' - ' ? substract(firstNumber, secondNumber) :
-    operator == ' * ' ? multiply(firstNumber, secondNumber) :
-    operator == ' / ' ? divide(firstNumber, secondNumber) : 'Podano zły operator'
-}
-
 const numberButtons = document.querySelectorAll('.number');
-const operation = document.querySelector('.operation');
 const operand = document.querySelectorAll('.operand');
+const operation = document.querySelector('.operation');
 const currentOperation = document.querySelector('.result')
 const clear = document.querySelector('#clear');
+const dlt = document.querySelector('.delete')
 const equal = document.querySelector('#equal');
 
-
 numberButtons.forEach(button => {
-    button.addEventListener('click', () => appendNumber(button.innerHTML))
-})
-
-function appendNumber(number) {
-    if(currentOperation.textContent === '0' || shouldScreenReset) resetScreen()
-    currentOperation.textContent += number;
-}
-
-function resetScreen() {
-    currentOperation.textContent = ''
-    shouldScreenReset = false;
-}
-
-
-operand.forEach(button => {
     button.addEventListener('click', () => {
-        setOperation(button.innerHTML);
+        appendNumber(button.innerHTML);
     })
 })
 
+operand.forEach(button => {
+    button.addEventListener('click', () => {
+        setOperation(button.innerHTML)
+    })
+})
+
+clear.addEventListener('click', clearFunction)
+
 function setOperation(operator) {
-    if(currentOperation !== null) evaluate();
+    if (currentOperator !== null) eval();
     firstNumber = currentOperation.textContent;
     currentOperator = operator;
     operation.textContent = `${firstNumber} ${operator}`;
     shouldScreenReset = true;
 }
 
-function evaluate() {
-    if (currentOperator === null || shouldScreenReset) return
-    secondNumber = currentOperation.innerHTML
-    currentOperation.textContent = operate(currentOperator,firstNumber,secondNumber);
-    operation.textContent = `${firstNumber} ${currentOperation} ${secondNumber} =`
+function eval() {
+    if(currentOperator === null || shouldScreenReset) return;
+    secondNumber = currentOperation.textContent;
+    currentOperation.textContent = roundAnswer(operate(currentOperator,firstNumber,secondNumber));
+    operation.textContent = `${firstNumber} ${currentOperator} ${secondNumber}`
     currentOperator = null;
 }
+
+
 
