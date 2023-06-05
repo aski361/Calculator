@@ -44,6 +44,28 @@ function clearFunction() {
     operation.textContent = '';
 }
 
+function setOperation(operator) {
+    if (currentOperator !== null) eval();
+    firstNumber = currentOperation.textContent;
+    currentOperator = operator;
+    operation.textContent = `${firstNumber} ${operator}`;
+    shouldScreenReset = true;
+}
+
+function eval() {
+    if(currentOperator === null || shouldScreenReset) return;
+    secondNumber = currentOperation.textContent;
+    currentOperation.textContent = roundAnswer(operate(currentOperator,firstNumber,secondNumber));
+    operation.textContent = `${firstNumber} ${currentOperator} ${secondNumber}`
+    currentOperator = null;
+    shouldScreenReset = true;
+}
+
+function deleteFunction() {
+    currentOperation.textContent = currentOperation.textContent.toString().slice(0,-1)
+}
+
+
 
     
 let firstNumber = '';
@@ -56,8 +78,9 @@ const operand = document.querySelectorAll('.operand');
 const operation = document.querySelector('.operation');
 const currentOperation = document.querySelector('.result')
 const clear = document.querySelector('#clear');
-const dlt = document.querySelector('.delete')
+const dlt = document.querySelector('#delete')
 const equal = document.querySelector('#equal');
+const dot = document.querySelector('.dot')
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -73,21 +96,13 @@ operand.forEach(button => {
 
 clear.addEventListener('click', clearFunction)
 
-function setOperation(operator) {
-    if (currentOperator !== null) eval();
-    firstNumber = currentOperation.textContent;
-    currentOperator = operator;
-    operation.textContent = `${firstNumber} ${operator}`;
-    shouldScreenReset = true;
+dlt.addEventListener('click', deleteFunction)
+
+equal.addEventListener('click', eval)
+
+dot.addEventListener('click', appendPoint)
+
+function appendPoint() {
+    if(currentOperation.textContent.indexOf('.') === -1)
+    return currentOperation.textContent += '.'
 }
-
-function eval() {
-    if(currentOperator === null || shouldScreenReset) return;
-    secondNumber = currentOperation.textContent;
-    currentOperation.textContent = roundAnswer(operate(currentOperator,firstNumber,secondNumber));
-    operation.textContent = `${firstNumber} ${currentOperator} ${secondNumber}`
-    currentOperator = null;
-}
-
-
-
