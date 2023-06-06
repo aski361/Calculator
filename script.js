@@ -54,6 +54,7 @@ function setOperation(operator) {
 
 function eval() {
     if(currentOperator === null || shouldScreenReset) return;
+    if(firstNumber === '0') {return currentOperation.textContent = 'Nie mozna dzielic 0'}
     secondNumber = currentOperation.textContent;
     currentOperation.textContent = roundAnswer(operate(currentOperator,firstNumber,secondNumber));
     operation.textContent = `${firstNumber} ${currentOperator} ${secondNumber}`
@@ -65,7 +66,10 @@ function deleteFunction() {
     currentOperation.textContent = currentOperation.textContent.toString().slice(0,-1)
 }
 
-
+function appendPoint() {
+    if(currentOperation.textContent.indexOf('.') === -1)
+    return currentOperation.textContent += '.'
+}
 
     
 let firstNumber = '';
@@ -102,7 +106,5 @@ equal.addEventListener('click', eval)
 
 dot.addEventListener('click', appendPoint)
 
-function appendPoint() {
-    if(currentOperation.textContent.indexOf('.') === -1)
-    return currentOperation.textContent += '.'
-}
+
+
