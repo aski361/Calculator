@@ -1,3 +1,3 @@
 # Calculator
-Create a Calculator
-Live code: https://aski361.github.io/Calculator/
+Create a Calculator <br>
+Live preview: https://aski361.github.io/Calculator/
